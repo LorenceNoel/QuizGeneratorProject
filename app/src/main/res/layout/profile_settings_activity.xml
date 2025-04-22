@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    android:padding="16dp"
+    tools:context=".ProfileSettingsActivity">
+
+    <TextView
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile and Settings"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@color/teal" />
+
+
+    <LinearLayout
+        android:layout_below="@id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="40dp">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/settings"
+            android:layout_gravity="center" />
+
+
+        <Switch
+            android:id="@+id/dark_mode_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dark Mode"
+            android:textColor="@color/white"
+            android:layout_marginTop="40dp"
+            android:textSize="18sp"
+            android:background="@drawable/corners_rounded"
+            android:padding="12dp" />
+
+
+        <Switch
+            android:id="@+id/notifications_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notifications"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:background="@drawable/corners_rounded"
+            android:padding="12dp" />
+    </LinearLayout>
+</RelativeLayout>

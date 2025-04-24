@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">QuizGeneratorProject</string>
+    <string name="sign_up_icon">Sign Up Icon</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="or">OR</string>
+    <string name="default_web_client_id">1:983253504074:android:ff6b0cd57420dbe6f496b3</string>
+    <string name="email">Email</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">Login</string>
 </resources>

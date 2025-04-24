@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/create_account_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
@@ -9,57 +9,109 @@
     android:padding="16dp"
     tools:context=".CreateAccountActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <!-- Account icon image -->
-        <ImageView
-            android:layout_width="160dp"
-            android:layout_height="200dp"
-            android:src="@drawable/signup_icon"/>
-
-        <!-- Username input field -->
-        <EditText
-            android:id="@+id/username_input"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:hint="Enter Username"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="18sp"
-            android:background="@drawable/corners_rounded"
-            android:padding="18dp"
-            android:inputType="text"/>
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <!-- Password input field -->
-        <EditText
-            android:id="@+id/password_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:hint="Enter Password"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="18sp"
-            android:background="@drawable/corners_rounded"
-            android:padding="18dp"
-            android:inputType="textPassword"/>
+            <!-- Icon -->
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/sign_up_icon"
+                android:src="@drawable/signup_icon" />
 
-        <!-- Create Account button -->
-        <Button
-            android:id="@+id/create_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:backgroundTint="@color/white"
-            android:textColor="#008080"
-            android:padding="18dp"
-            android:layout_marginTop="32dp"
-            android:textSize="20sp"/>
-    </LinearLayout>
+            <!-- Full Name -->
+            <EditText
+                android:id="@+id/fullname_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/corners_rounded"
+                android:hint="@string/full_name"
+                android:inputType="textPersonName"
+                android:padding="18dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="18sp" />
+
+            <!-- Email Address -->
+            <EditText
+                android:id="@+id/email_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/corners_rounded"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:padding="18dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="18sp" />
+
+            <!-- Password -->
+            <EditText
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/corners_rounded"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:padding="18dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="18sp" />
+
+            <!-- Confirm Password -->
+            <EditText
+                android:id="@+id/confirm_password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/corners_rounded"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:padding="18dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="18sp" />
+
+            <!-- Create Account Button -->
+            <Button
+                android:id="@+id/create_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/white"
+                android:padding="18dp"
+                android:text="@string/create_account"
+                android:textColor="#008080"
+                android:textSize="20sp" />
+
+            <!-- Or separator -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/or"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <!-- Google Sign-In Button -->
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/google_sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>

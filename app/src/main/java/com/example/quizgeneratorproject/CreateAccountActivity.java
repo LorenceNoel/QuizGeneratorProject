@@ -47,14 +47,11 @@ public class CreateAccountActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Setup Google Sign-In launcher
-        googleSignInLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    Intent data = result.getData();
-                    if (data != null) handleGoogleSignIn(data);
-                    else Log.d(TAG, "Google Sign-In returned no data");
-                }
-        );
+        googleSignInLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            Intent data = result.getData();
+            if (data != null) handleGoogleSignIn(data);
+            else Log.d(TAG, "Google Sign-In returned no data");
+        });
 
         // View references
         fullnameInput = findViewById(R.id.fullname_input);
@@ -67,10 +64,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         createButton.setOnClickListener(v -> createAccount());
 
         // Configure Google Sign-In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         // Force account chooser for Google
@@ -110,33 +104,24 @@ public class CreateAccountActivity extends AppCompatActivity {
         }
 
         // Create user
-        mAuth.createUserWithEmailAndPassword(email, pw)
-                .addOnSuccessListener(authRes -> {
-                    FirebaseUser user = authRes.getUser();
-                    if (user != null) {
-                        Log.d(TAG, "createAccount succeeded: UID=" + user.getUid());
-                        user.updateProfile(new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(fullName)
-                                        .build())
-                                .addOnSuccessListener(aVoid -> showAccountCreatedAndProceed())
-                                .addOnFailureListener(e -> Log.e(TAG, "Profile update error", e));
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Log.e(TAG, "createAccount failed", e);
-                    Toast.makeText(this, "Sign-up failed: " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                });
+        mAuth.createUserWithEmailAndPassword(email, pw).addOnSuccessListener(authRes -> {
+            FirebaseUser user = authRes.getUser();
+            if (user != null) {
+                Log.d(TAG, "createAccount succeeded: UID=" + user.getUid());
+                user.updateProfile(new UserProfileChangeRequest.Builder().setDisplayName(fullName).build()).addOnSuccessListener(aVoid -> showAccountCreatedAndProceed()).addOnFailureListener(e -> Log.e(TAG, "Profile update error", e));
+            }
+        }).addOnFailureListener(e -> {
+            Log.e(TAG, "createAccount failed", e);
+            Toast.makeText(this, "Sign-up failed: " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+        });
     }
 
     private void handleGoogleSignIn(Intent data) {
         try {
-            GoogleSignInAccount acct = GoogleSignIn.getSignedInAccountFromIntent(data)
-                    .getResult(ApiException.class);
+            GoogleSignInAccount acct = GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class);
             if (acct != null && acct.getIdToken() != null) {
                 AuthCredential cred = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-                mAuth.signInWithCredential(cred)
-                        .addOnSuccessListener(res -> showAccountCreatedAndProceed())
-                        .addOnFailureListener(e -> Log.e(TAG, "Google auth failed", e));
+                mAuth.signInWithCredential(cred).addOnSuccessListener(res -> showAccountCreatedAndProceed()).addOnFailureListener(e -> Log.e(TAG, "Google auth failed", e));
             }
         } catch (ApiException e) {
             Log.e(TAG, "Google sign-in exception", e);
@@ -148,11 +133,7 @@ public class CreateAccountActivity extends AppCompatActivity {
      * then navigate to MainActivity after a short delay.
      */
     private void showAccountCreatedAndProceed() {
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("Welcome!")
-                .setMessage("Your account has been created. Please sign in using your new credentials.")
-                .setCancelable(false)
-                .create();
+        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("Welcome!").setMessage("Your account has been created. Please sign in using your new credentials.").setCancelable(false).create();
         dialog.show();
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             dialog.dismiss();
@@ -161,7 +142,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private void navigateToMain() {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

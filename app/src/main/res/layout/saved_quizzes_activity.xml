@@ -8,7 +8,6 @@
     android:padding="16dp"
     tools:context=".SavedQuizzesActivity">
 
-    <!-- Header -->
     <TextView
         android:id="@+id/title_saved_quizzes"
         android:layout_width="match_parent"
@@ -20,7 +19,6 @@
         android:padding="18dp"
         android:textStyle="bold" />
 
-    <!-- Scrollable Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,95 +30,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Example Quiz Box -->
+            <!-- sample quiz box -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp"
-            <?xml version="1.0" encoding="utf-8"?>
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/login_background"
-                android:padding="16dp"
-                tools:context=".SavedQuizzesActivity">
-
-                <!-- Header -->
-                <TextView
-                    android:id="@+id/title_saved_quizzes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Saved Quizzes"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:background="@color/teal_700"
-                    android:padding="18dp"
-                    android:textStyle="bold" />
-
-                <!-- Scrollable Content -->
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/title_saved_quizzes"
-                    android:layout_marginTop="12dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <!-- Example Quiz Box -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="16dp"
-                            android:background="@drawable/corners_rounded"
-                            android:layout_marginBottom="16dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Quiz on Java Basics"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="end"
-                                android:layout_marginTop="12dp">
-
-                                <Button
-                                    android:id="@+id/view_quiz_button"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="View Quiz"
-                                    android:backgroundTint="@color/white"
-                                    android:textColor="#008080"
-                                    android:layout_marginEnd="8dp" />
-
-                                <Button
-                                    android:id="@+id/retake_quiz_button"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Retake"
-                                    android:backgroundTint="@color/white"
-                                    android:textColor="#008080" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </ScrollView>
-            </RelativeLayout>
-
-            android:background="@drawable/corners_rounded"
+                android:background="@drawable/corners_rounded"
                 android:layout_marginBottom="16dp">
 
                 <TextView

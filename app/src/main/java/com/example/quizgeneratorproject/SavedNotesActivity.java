@@ -1,9 +1,11 @@
 package com.example.quizgeneratorproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SavedNotesActivity extends AppCompatActivity {
 
@@ -38,5 +40,33 @@ public class SavedNotesActivity extends AppCompatActivity {
 
             notesContainer.addView(noteBox);
         }
+
+        // 🔻 Add this block for BottomNavigationView
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setSelectedItemId(R.id.nav_saved_notes); // highlight current tab
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    startActivity(new Intent(this, MainActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.nav_results:
+                    startActivity(new Intent(this, NotesResultsActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.nav_saved_notes:
+                    return true; // Already here
+                case R.id.nav_saved_quizzes:
+                    startActivity(new Intent(this, SavedQuizzesActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.nav_settings:
+                    startActivity(new Intent(this, ProfileSettingsActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+            }
+            return false;
+        });
     }
 }

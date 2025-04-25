@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notes_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    android:padding="16dp"
+
+    tools:context=".NotesResultsActivity">
+
+    <!-- Title-->
+    <TextView
+        android:id="@+id/notes_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AI-Generated Notes"
+        android:padding="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <!-- display Area -->
+    <ScrollView
+        android:id="@+id/scroll_notes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/notes_title"
+        android:layout_above="@+id/button_container"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/generated_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_rounded"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:text="Structured AI-generated notes will appear here..."
+            android:scrollbars="vertical" />
+    </ScrollView>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save"
+            android:backgroundTint="@color/white"
+            android:textColor="#008080"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:layout_margin="4dp" />
+
+        <Button
+            android:id="@+id/share_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Share"
+            android:backgroundTint="@color/white"
+            android:textColor="#008080"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:layout_margin="4dp" />
+
+        <Button
+            android:id="@+id/export_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Export"
+            android:backgroundTint="@color/white"
+            android:textColor="#008080"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:layout_margin="4dp" />
+    </LinearLayout>
+</RelativeLayout>

@@ -18,7 +18,7 @@
         android:textSize="24sp"
         android:gravity="center"
         android:padding="16dp"
-        android:background="@color/teal" />
+        />
 
 
     <LinearLayout

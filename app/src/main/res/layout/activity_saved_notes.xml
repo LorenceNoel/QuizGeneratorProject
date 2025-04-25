@@ -30,8 +30,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
-    <include
-        android:id="@+id/bottom_nav_include"
-        layout="@layout/bottom_nav"
-        android:layout_alignParentBottom="true"/>
+    <include layout="@layout/bottom_nav" android:layout_alignParentBottom="true" />
 </RelativeLayout>

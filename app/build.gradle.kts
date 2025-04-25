@@ -21,8 +21,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -39,11 +38,16 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.google.firebase.auth)
+    implementation(libs.tools.core)
+    implementation(libs.firebase.inappmessaging)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation(platform(libs.firebase.bom))
-    implementation (libs.firebase.messaging)
+    implementation(libs.firebase.messaging)
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth.ktx)
+    implementation("com.google.firebase:firebase-vertexai")
+    implementation (libs.guava)
+    implementation (libs.reactive.streams)
 }

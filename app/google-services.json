@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "983253504074",
-    "project_id": "mobile-quiz-project-4767b",
-    "storage_bucket": "mobile-quiz-project-4767b.firebasestorage.app"
+    "project_number": "356147092117",
+    "project_id": "sample-firebase-ai-app-2b785",
+    "storage_bucket": "sample-firebase-ai-app-2b785.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:983253504074:android:ff6b0cd57420dbe6f496b3",
+        "mobilesdk_app_id": "1:356147092117:android:87a07137f2d69eb8d7199c",
         "android_client_info": {
           "package_name": "com.example.quizgeneratorproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "983253504074-ura43d7tgjhi2o0u1kkdks178lpbgbsp.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.quizgeneratorproject",
-            "certificate_hash": "95e9abd04de802e5b31d8d1d93fab96ce5b41462"
-          }
-        },
-        {
-          "client_id": "983253504074-i4n26k046v6om1sv6f7e0p7q2k18djeg.apps.googleusercontent.com",
+          "client_id": "356147092117-oa65jldb72njg4pgcvrd27oqb980v2c3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBx3O6NEd1tO792xwT8QIaxNx6fpMgwpcs"
+          "current_key": "AIzaSyAIAuvethvfVDJ1em7gbRV_Yu_oL-wNzLo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "983253504074-i4n26k046v6om1sv6f7e0p7q2k18djeg.apps.googleusercontent.com",
+              "client_id": "356147092117-oa65jldb72njg4pgcvrd27oqb980v2c3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

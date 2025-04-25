@@ -161,7 +161,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private void navigateToMain() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 }

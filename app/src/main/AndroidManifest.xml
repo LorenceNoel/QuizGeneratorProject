@@ -26,7 +26,8 @@
 
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".MainActivity" />
-<activity android:name="ProfileSettingsActivity" />
+        <activity android:name=".ResultsActivity" />
+<!--        <activity android:name="SettingsActivity" />-->
     </application>
 
 </manifest>

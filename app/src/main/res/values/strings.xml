@@ -7,8 +7,14 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="create_account">Create Account</string>
     <string name="or">OR</string>
-    <string name="default_web_client_id">1:983253504074:android:ff6b0cd57420dbe6f496b3</string>
+    <string name="default_web_client_id">1:356147092117:android:87a07137f2d69eb8d7199c</string>
     <string name="email">Email</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="login">Login</string>
+    <string name="what_do_you_want_to_ask">e.g. Physics 20 Practice Quiz and Notes</string>
+    <string name="generate">Generate</string>
+    <string name="notes">Notes</string>
+    <string name="save_notes">Save Notes</string>
+    <string name="quiz_questions">Quiz Questions</string>
+    <string name="save_quiz">Save Quiz</string>
 </resources>

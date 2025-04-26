@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
     private GeminiClient geminiClient;
     private EditText topicInput;
@@ -28,6 +30,30 @@ public class MainActivity extends AppCompatActivity {
         loadingOverlay = findViewById(R.id.loading_overlay);
         geminiClient = new GeminiClient(this);
 
+        // 🔽 Setup Bottom Navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
+                    return true;
+                case R.id.nav_settings:
+                    startActivity(new Intent(MainActivity.this, ProfileSettingsActivity.class));
+                    return true;
+                case R.id.nav_saved_notes:
+                    startActivity(new Intent(MainActivity.this, SavedNotesActivity.class));
+                    return true;
+                case R.id.nav_saved_results:
+                    startActivity(new Intent(MainActivity.this, ResultsActivity.class));
+                    return true;
+                case R.id.nav_saved_quizzes:
+                    startActivity(new Intent(MainActivity.this, SavedQuizzesActivity.class));
+                    return true;
+            }
+            return false;
+        });
+
+        // 🔽 Generate Quiz Button Logic
         generateButton.setOnClickListener(v -> {
             String userInput = topicInput.getText().toString().trim();
             if (userInput.isEmpty()) {
@@ -35,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            // Clear the input immediately
             topicInput.setText("");
-
-            // Show loading spinner and overlay, disable button
             loadingIndicator.setVisibility(View.VISIBLE);
             loadingOverlay.setVisibility(View.VISIBLE);
             generateButton.setEnabled(false);
@@ -48,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onSuccess(String jsonResult) {
                     runOnUiThread(() -> {
                         hideLoading();
-                        // Navigate to results screen
                         Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
                         intent.putExtra("RESULT_JSON", jsonResult);
                         startActivity(intent);
@@ -66,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Hides loading indicator and overlay, re-enables generate button.
-     */
     private void hideLoading() {
         loadingIndicator.setVisibility(View.GONE);
         loadingOverlay.setVisibility(View.GONE);

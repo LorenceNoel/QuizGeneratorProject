@@ -17,12 +17,12 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:gravity="center"
-        android:padding="16dp"
-        />
-
+        android:padding="16dp" />
 
     <LinearLayout
+        android:id="@+id/settings_container"
         android:layout_below="@id/top_bar"
+        android:layout_above="@id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -35,7 +35,6 @@
             android:src="@drawable/settings"
             android:layout_gravity="center" />
 
-
         <Switch
             android:id="@+id/dark_mode_switch"
             android:layout_width="match_parent"
@@ -46,7 +45,6 @@
             android:textSize="18sp"
             android:background="@drawable/corners_rounded"
             android:padding="12dp" />
-
 
         <Switch
             android:id="@+id/notifications_switch"
@@ -59,4 +57,15 @@
             android:background="@drawable/corners_rounded"
             android:padding="12dp" />
     </LinearLayout>
+
+    <!-- Bottom Navigation Bar -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/teal"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_nav_menu" />
 </RelativeLayout>

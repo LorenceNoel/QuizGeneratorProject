@@ -17,4 +17,7 @@
     <string name="save_notes">Save Notes</string>
     <string name="quiz_questions">Quiz Questions</string>
     <string name="save_quiz">Save Quiz</string>
+    <string name="saved_quizzes">Saved Quizzes</string>
+    <string name="saved_notes">Saved Notes</string>
+    <string name="show_more">Show more</string>
 </resources>

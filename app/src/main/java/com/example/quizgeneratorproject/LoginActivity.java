@@ -58,12 +58,12 @@ public class LoginActivity extends AppCompatActivity {
         );
 
         // View references
-        emailInput = findViewById(R.id.username_input);
-        passwordInput = findViewById(R.id.password_input);
-        forgotPassword = findViewById(R.id.forgot_password);
-        loginButton = findViewById(R.id.login_button);
-        googleSignInButton = findViewById(R.id.google_sign_in_button);
-        createAccountButton = findViewById(R.id.create_account_button);
+        emailInput           = findViewById(R.id.username_input);
+        passwordInput        = findViewById(R.id.password_input);
+        forgotPassword       = findViewById(R.id.forgot_password);
+        loginButton          = findViewById(R.id.login_button);
+        googleSignInButton   = findViewById(R.id.google_sign_in_button);
+        createAccountButton  = findViewById(R.id.create_account_button);
 
         // Email/password login
         loginButton.setOnClickListener(v -> signInWithEmail());
@@ -96,16 +96,18 @@ public class LoginActivity extends AppCompatActivity {
         googleSignInButton.setSize(SignInButton.SIZE_WIDE);
         googleSignInButton.setColorScheme(SignInButton.COLOR_DARK);
         googleSignInButton.setOnClickListener(v -> {
-            // Force account chooser by signing out first
-            mGoogleSignInClient.signOut().addOnCompleteListener(task -> {
-                googleSignInLauncher.launch(mGoogleSignInClient.getSignInIntent());
-            });
+            // Force account chooser by signing out first,
+            // binding the callback to this Activity so the broker sees your package
+            mGoogleSignInClient.signOut()
+                    .addOnCompleteListener(this, task -> {
+                        googleSignInLauncher.launch(mGoogleSignInClient.getSignInIntent());
+                    });
         });
 
         // Create account navigation
-        createAccountButton.setOnClickListener(v -> startActivity(
-                new Intent(LoginActivity.this, CreateAccountActivity.class)
-        ));
+        createAccountButton.setOnClickListener(v ->
+                startActivity(new Intent(LoginActivity.this, CreateAccountActivity.class))
+        );
     }
 
     private void signInWithEmail() {
@@ -139,7 +141,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void handleGoogleSignIn(Intent data) {
         try {
-            GoogleSignInAccount acct = GoogleSignIn.getSignedInAccountFromIntent(data)
+            GoogleSignInAccount acct = GoogleSignIn
+                    .getSignedInAccountFromIntent(data)
                     .getResult(ApiException.class);
             if (acct != null && acct.getIdToken() != null) {
                 AuthCredential cred = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -154,7 +157,12 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnFailureListener(e -> Log.e(TAG, "Google auth failed", e));
             }
         } catch (ApiException e) {
-            Log.e(TAG, "Google sign-in exception", e);
+            Log.e(TAG, "Google sign-in exception, code: " +
+                    e.getStatusCode() + " - " + e.getMessage(), e);
+            Toast.makeText(this,
+                    "Google sign-in error: " + e.getStatusCode(),
+                    Toast.LENGTH_LONG
+            ).show();
         }
     }
 

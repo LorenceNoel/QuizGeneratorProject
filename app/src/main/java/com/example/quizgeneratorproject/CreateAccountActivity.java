@@ -51,18 +51,22 @@ public class CreateAccountActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     Intent data = result.getData();
-                    if (data != null) handleGoogleSignIn(data);
-                    else Log.d(TAG, "Google Sign-In returned no data");
+                    if (data != null) {
+                        handleGoogleSignIn(data);
+                    } else {
+                        Log.d(TAG, "Google Sign-In returned no data");
+                        Toast.makeText(this, "Google Sign-In failed: no data", Toast.LENGTH_SHORT).show();
+                    }
                 }
         );
 
         // View references
-        fullnameInput = findViewById(R.id.fullname_input);
-        emailInput = findViewById(R.id.email_input);
-        passwordInput = findViewById(R.id.password_input);
-        confirmPasswordInput = findViewById(R.id.confirm_password_input);
-        createButton = findViewById(R.id.create_button);
-        googleSignInButton = findViewById(R.id.google_sign_in_button);
+        fullnameInput         = findViewById(R.id.fullname_input);
+        emailInput            = findViewById(R.id.email_input);
+        passwordInput         = findViewById(R.id.password_input);
+        confirmPasswordInput  = findViewById(R.id.confirm_password_input);
+        createButton          = findViewById(R.id.create_button);
+        googleSignInButton    = findViewById(R.id.google_sign_in_button);
 
         createButton.setOnClickListener(v -> createAccount());
 
@@ -73,19 +77,21 @@ public class CreateAccountActivity extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // Force account chooser for Google
+        // Force account chooser for Google, binding the callback to this Activity
         googleSignInButton.setOnClickListener(v -> {
-            mGoogleSignInClient.signOut().addOnCompleteListener(task -> {
-                googleSignInLauncher.launch(mGoogleSignInClient.getSignInIntent());
-            });
+            mGoogleSignInClient.signOut()
+                    .addOnCompleteListener(this, task -> {
+                        // Now launched "from" your app's main thread
+                        googleSignInLauncher.launch(mGoogleSignInClient.getSignInIntent());
+                    });
         });
     }
 
     private void createAccount() {
         String fullName = fullnameInput.getText().toString().trim();
-        String email = emailInput.getText().toString().trim();
-        String pw = passwordInput.getText().toString();
-        String confirm = confirmPasswordInput.getText().toString();
+        String email    = emailInput.getText().toString().trim();
+        String pw       = passwordInput.getText().toString();
+        String confirm  = confirmPasswordInput.getText().toString();
 
         // Input validation
         if (fullName.isEmpty()) {
@@ -130,16 +136,24 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private void handleGoogleSignIn(Intent data) {
         try {
-            GoogleSignInAccount acct = GoogleSignIn.getSignedInAccountFromIntent(data)
+            GoogleSignInAccount acct = GoogleSignIn
+                    .getSignedInAccountFromIntent(data)
                     .getResult(ApiException.class);
+
             if (acct != null && acct.getIdToken() != null) {
                 AuthCredential cred = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
                 mAuth.signInWithCredential(cred)
                         .addOnSuccessListener(res -> showAccountCreatedAndProceed())
-                        .addOnFailureListener(e -> Log.e(TAG, "Google auth failed", e));
+                        .addOnFailureListener(e -> {
+                            Log.e(TAG, "Google auth failed", e);
+                            Toast.makeText(this, "Authentication failed: " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        });
             }
         } catch (ApiException e) {
-            Log.e(TAG, "Google sign-in exception", e);
+            Log.e(TAG, "Google sign-in exception, code: "
+                    + e.getStatusCode() + ", msg: "
+                    + e.getMessage(), e);
+            Toast.makeText(this, "Google sign-in error: " + e.getStatusCode(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -161,7 +175,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private void navigateToMain() {
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

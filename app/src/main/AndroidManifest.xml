@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.quizgeneratorproject">
 
+    <!-- Required for GeminiClient network calls -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
 
     <application
         android:allowBackup="true"
@@ -14,20 +20,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizGeneratorProject"
         tools:targetApi="31">
+
+        <!-- Entry point -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Onboarding -->
         <activity android:name=".CreateAccountActivity" />
+
+        <!-- Core app screens -->
         <activity android:name=".MainActivity" />
         <activity android:name=".ResultsActivity" />
-<!--        <activity android:name="SettingsActivity" />-->
-    </application>
+        <activity android:name=".SavedNotesActivity" />
+        <activity android:name=".SavedQuizzesActivity" />
 
+        <!-- Settings/Profile -->
+        <activity android:name=".ProfileSettingsActivity" />
+
+        <receiver
+            android:name=".ReminderReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
 </manifest>

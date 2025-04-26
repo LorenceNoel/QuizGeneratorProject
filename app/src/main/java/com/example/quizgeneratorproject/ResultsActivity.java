@@ -1,5 +1,6 @@
 package com.example.quizgeneratorproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -37,6 +39,25 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(this, ProfileSettingsActivity.class));
+                return true;
+            } else if (id == R.id.nav_saved_notes) {
+                startActivity(new Intent(this, SavedNotesActivity.class));
+                return true;
+            } else if (id == R.id.nav_saved_quizzes) {
+                startActivity(new Intent(this, SavedQuizzesActivity.class));
+                return true;
+            }
+            return false;
+        });
 
         // ---- Initialize Firebase ----
         db = FirebaseFirestore.getInstance();

@@ -2,13 +2,18 @@ package com.example.quizgeneratorproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
     private GeminiClient geminiClient;
@@ -28,6 +33,26 @@ public class MainActivity extends AppCompatActivity {
         loadingOverlay = findViewById(R.id.loading_overlay);
         geminiClient = new GeminiClient(this);
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(this, ProfileSettingsActivity.class));
+                return true;
+            } else if (id == R.id.nav_saved_notes) {
+                startActivity(new Intent(this, SavedNotesActivity.class));
+                return true;
+            } else if (id == R.id.nav_saved_quizzes) {
+                startActivity(new Intent(this, SavedQuizzesActivity.class));
+                return true;
+            }
+            return false;
+        });
+
+
         generateButton.setOnClickListener(v -> {
             String userInput = topicInput.getText().toString().trim();
             if (userInput.isEmpty()) {
@@ -35,12 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            // Clear the input immediately
             topicInput.setText("");
-
-            // Show loading spinner and overlay, disable button
-            loadingIndicator.setVisibility(View.VISIBLE);
             loadingOverlay.setVisibility(View.VISIBLE);
+            loadingIndicator.setVisibility(View.VISIBLE);
             generateButton.setEnabled(false);
 
             geminiClient.generate(userInput, new GeminiClient.Callback() {
@@ -48,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 public void onSuccess(String jsonResult) {
                     runOnUiThread(() -> {
                         hideLoading();
-                        // Navigate to results screen
                         Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
                         intent.putExtra("RESULT_JSON", jsonResult);
                         startActivity(intent);
@@ -66,12 +87,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Hides loading indicator and overlay, re-enables generate button.
-     */
     private void hideLoading() {
-        loadingIndicator.setVisibility(View.GONE);
         loadingOverlay.setVisibility(View.GONE);
+        loadingIndicator.setVisibility(View.GONE);
         generateButton.setEnabled(true);
     }
 }

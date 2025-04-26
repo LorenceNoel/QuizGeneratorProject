@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/saved_notes_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@drawable/login_background"
-    tools:context=".SavedNotesActivity">
+    android:padding="16dp"
+    tools:context=".SavedQuizzesActivity">
 
-    <!-- Title -->
+    <!-- Header -->
     <TextView
-        android:id="@+id/saved_notes_title"
+        android:id="@+id/title_saved_quizzes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/saved_notes"
+        android:layout_centerHorizontal="true"
         android:padding="16dp"
-        android:textSize="24sp"
+        android:text="@string/saved_quizzes"
         android:textColor="@color/white"
-        android:layout_centerHorizontal="true" />
+        android:textSize="24sp" />
 
-    <!-- Scrollable notes area -->
+    <!-- Scrollable Content (above bottom nav) -->
     <ScrollView
+        android:id="@+id/scroll_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/saved_notes_title"
-        android:layout_above="@+id/bottom_navigation"
-        android:layout_marginTop="8dp">
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/title_saved_quizzes"
+        android:layout_marginTop="12dp">
 
         <LinearLayout
-            android:id="@+id/notes_container"
+            android:id="@+id/quizzes_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+            <!-- Dynamically added quiz items go here -->
+        </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Navigation (anchored to parent bottom) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"

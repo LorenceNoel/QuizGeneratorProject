@@ -14,7 +14,7 @@
         android:id="@+id/saved_notes_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saved Notes"
+        android:text="@string/saved_notes"
         android:padding="16dp"
         android:textSize="24sp"
         android:textColor="@color/white"

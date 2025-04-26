@@ -17,11 +17,6 @@
         android:title="Saved Notes" />
 
     <item
-        android:id="@+id/nav_saved_results"
-        android:icon="@drawable/ic_results"
-        android:title="Saved Results" />
-
-    <item
         android:id="@+id/nav_saved_quizzes"
         android:icon="@drawable/ic_quiz"
         android:title="Saved Quizzes" />

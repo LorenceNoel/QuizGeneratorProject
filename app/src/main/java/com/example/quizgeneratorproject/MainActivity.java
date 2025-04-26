@@ -2,15 +2,18 @@ package com.example.quizgeneratorproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
     private GeminiClient geminiClient;
@@ -30,30 +33,26 @@ public class MainActivity extends AppCompatActivity {
         loadingOverlay = findViewById(R.id.loading_overlay);
         geminiClient = new GeminiClient(this);
 
-        // 🔽 Setup Bottom Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    startActivity(new Intent(MainActivity.this, MainActivity.class));
-                    return true;
-                case R.id.nav_settings:
-                    startActivity(new Intent(MainActivity.this, ProfileSettingsActivity.class));
-                    return true;
-                case R.id.nav_saved_notes:
-                    startActivity(new Intent(MainActivity.this, SavedNotesActivity.class));
-                    return true;
-                case R.id.nav_saved_results:
-                    startActivity(new Intent(MainActivity.this, ResultsActivity.class));
-                    return true;
-                case R.id.nav_saved_quizzes:
-                    startActivity(new Intent(MainActivity.this, SavedQuizzesActivity.class));
-                    return true;
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_home) {
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            } else if (id == R.id.nav_settings) {
+                startActivity(new Intent(this, ProfileSettingsActivity.class));
+                return true;
+            } else if (id == R.id.nav_saved_notes) {
+                startActivity(new Intent(this, SavedNotesActivity.class));
+                return true;
+            } else if (id == R.id.nav_saved_quizzes) {
+                startActivity(new Intent(this, SavedQuizzesActivity.class));
+                return true;
             }
             return false;
         });
 
-        // 🔽 Generate Quiz Button Logic
+
         generateButton.setOnClickListener(v -> {
             String userInput = topicInput.getText().toString().trim();
             if (userInput.isEmpty()) {
@@ -62,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             topicInput.setText("");
-            loadingIndicator.setVisibility(View.VISIBLE);
             loadingOverlay.setVisibility(View.VISIBLE);
+            loadingIndicator.setVisibility(View.VISIBLE);
             generateButton.setEnabled(false);
 
             geminiClient.generate(userInput, new GeminiClient.Callback() {
@@ -89,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void hideLoading() {
-        loadingIndicator.setVisibility(View.GONE);
         loadingOverlay.setVisibility(View.GONE);
+        loadingIndicator.setVisibility(View.GONE);
         generateButton.setEnabled(true);
     }
 }

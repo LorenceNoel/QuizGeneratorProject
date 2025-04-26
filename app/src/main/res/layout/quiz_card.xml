@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="24dp"
+    android:background="@drawable/note_card_border"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Collapsed preview -->
+    <TextView
+        android:id="@+id/preview_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <!-- Full quiz JSON/text, hidden initially -->
+    <TextView
+        android:id="@+id/full_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <!-- Toggle link -->
+    <TextView
+        android:id="@+id/toggle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="Show more"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/note_card_border"
+    android:padding="16dp"
+    android:layout_marginBottom="24dp">
+
+    <!-- Collapsed preview -->
+    <TextView
+        android:id="@+id/preview_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:maxLines="3"
+        android:ellipsize="end" />
+
+    <!-- Full note, hidden by default -->
+    <TextView
+        android:id="@+id/full_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:paddingTop="8dp" />
+
+    <!-- Toggle link -->
+    <TextView
+        android:id="@+id/toggle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_more"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:paddingTop="8dp" />
+</LinearLayout>

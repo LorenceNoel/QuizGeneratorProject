@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Required for GeminiClient network calls -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,20 +15,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizGeneratorProject"
         tools:targetApi="31">
+
+        <!-- Entry point -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Onboarding -->
         <activity android:name=".CreateAccountActivity" />
+
+        <!-- Core app screens -->
         <activity android:name=".MainActivity" />
         <activity android:name=".ResultsActivity" />
-<!--        <activity android:name="SettingsActivity" />-->
-    </application>
+        <activity android:name=".SavedNotesActivity" />
+        <activity android:name=".SavedQuizzesActivity" />
 
+        <!-- Settings/Profile -->
+        <activity android:name=".ProfileSettingsActivity" />
+
+    </application>
 </manifest>

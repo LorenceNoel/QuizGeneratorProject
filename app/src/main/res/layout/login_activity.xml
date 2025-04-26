@@ -87,6 +87,11 @@
                 android:textSize="16sp" />
 
             <!-- Google Sign-In Button -->
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/google_sign_in_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
 
 
             <!-- Create Account button -->

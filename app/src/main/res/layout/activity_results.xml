@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    tools:context=".ResultsActivity">
+    android:background="@drawable/login_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <!-- Top Navbar placeholder -->
-        <!-- Spacer for Navbar area -->
+        <!-- Navbar spacer -->
         <View
             android:id="@+id/spacer"
             android:layout_width="0dp"
@@ -37,20 +34,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!-- Notes Section -->
                 <TextView
                     android:id="@+id/notes_view_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
+                    android:background="@drawable/bg_section_header"
+                    android:fontFamily="sans-serif-medium"
+                    android:padding="8dp"
                     android:text="@string/notes"
-                    android:textSize="24sp" />
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/notes_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/corners_rounded"
-                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_card"
+                    android:fontFamily="sans-serif"
+                    android:padding="16dp"
+                    android:textColor="#333333"
                     android:textSize="16sp" />
 
                 <Button
@@ -58,31 +62,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/teal"
-                    android:padding="18dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:padding="14dp"
                     android:text="@string/save_notes"
-                    android:textColor="@color/white" />
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
+                <!-- Divider -->
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
-                    android:background="#CCCCCC" />
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="24dp"
+                    android:background="#FF9800" />
 
+                <!-- Quiz Section -->
                 <TextView
                     android:id="@+id/quiz_view_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
+                    android:background="@drawable/bg_section_header"
+                    android:fontFamily="sans-serif-medium"
+                    android:padding="8dp"
                     android:text="@string/quiz_questions"
-                    android:textSize="24sp" />
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/quiz_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/corners_rounded"
-                    android:padding="12dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_card"
+                    android:fontFamily="sans-serif"
+                    android:padding="16dp"
+                    android:textColor="#333333"
                     android:textSize="16sp" />
 
                 <Button
@@ -90,10 +104,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/teal"
-                    android:padding="18dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:padding="14dp"
                     android:text="@string/save_quiz"
-                    android:textColor="@color/white" />
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
         </ScrollView>

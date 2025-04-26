@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth.ktx)
+    implementation (libs.firebase.firestore)
     implementation("com.google.firebase:firebase-vertexai")
     implementation (libs.guava)
     implementation (libs.reactive.streams)
